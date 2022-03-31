@@ -1,6 +1,9 @@
 import logo from "../images/logo.png";
 
-function Header() {
+type Props = {
+  setModal: (value: string) => void;
+};
+function Header({ setModal }: Props) {
   return (
     <header>
       <nav className="navigation-header">
@@ -15,7 +18,7 @@ function Header() {
             <button>Sign Up</button>
           </li>
           <li className="login-section__button">
-            <button>Log in</button>
+            <button onClick={() => setModal("log-in")}>Log in</button>
           </li>
           <li className="login-section__info">
             <h3>Hot Line +38344255255</h3>

@@ -1,5 +1,4 @@
 import "./index.css";
-
 import Header from "./Components/Header";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Intro from "./Pages/Intro";
@@ -13,12 +12,15 @@ import Patients from "./Pages/Patients";
 import Appointments from "./Pages/Appointments";
 import Departments from "./Pages/Departments";
 import Payroll from "./Pages/Payroll";
+import Modals from "./Components/Modals/Modals";
 
 function App() {
-  const [admin, setAdmin] = useState({});
+  const [admin, setAdmin] = useState(null);
+  const [modal, setModal] = useState("");
   return (
     <div className="App">
-      <Header />
+      <Modals modal={modal} setModal={setModal} />
+      <Header setModal={setModal} />
       <main className={`${admin === null ? "intro-main" : "logged-in__main"}`}>
         {admin === null ? null : <SideBar />}
         <Routes>

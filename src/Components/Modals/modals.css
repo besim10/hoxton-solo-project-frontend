@@ -1,0 +1,64 @@
+.modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.541);
+  display: grid;
+  backdrop-filter: blur(1px);
+  place-content: center;
+  position: fixed;
+}
+.modal-container {
+  display: grid;
+  background-color: white;
+  border-radius: 1rem;
+  position: relative;
+  padding: 1rem;
+  gap: 1rem;
+}
+.modal-header {
+  display: grid;
+  place-items: center;
+}
+.modal-header img {
+  position: absolute;
+  width: 30px;
+  top: -12px;
+  cursor: pointer;
+  right: -12px;
+  background-color: #1976d2;
+  border-radius: 1rem;
+}
+
+.modal-body {
+  padding: 1rem;
+}
+.modal-header h2 {
+  text-align: center;
+}
+.modal-body form {
+  gap: 1rem;
+  display: grid;
+}
+.modal-body form label {
+  display: grid;
+  gap: 0.5rem;
+}
+.modal-body form label input {
+  padding: 0.4rem;
+  background-color: #e2e2e2;
+  border: none;
+  width: 260px;
+  border-radius: 5px;
+}
+.modal-body form label input:focus {
+  border: none;
+  outline: 2px solid #1976d2;
+}
+.modal-body form button {
+  border: none;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #1976d2;
+  font-weight: bold;
+  cursor: pointer;
+}

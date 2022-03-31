@@ -1,4 +1,4 @@
-import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import dashboardIcon from "../icons/dashboard-icon.svg";
 import doctorIcon from "../icons/doctor-icon.svg";
 import nurseIcon from "../icons/nurse-icon.svg";
 import patientIcon from "../icons/patient-icon.svg";
@@ -14,7 +14,7 @@ function SideBar() {
       <ul className="side-bar-list">
         <li className="side-bar-list__item">
           <NavLink to="/dashboard">
-            <QueryStatsIcon />
+            <img src={dashboardIcon} alt="" />
             <span>Dashboard</span>
           </NavLink>
         </li>
