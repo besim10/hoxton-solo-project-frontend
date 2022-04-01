@@ -15,7 +15,13 @@ function Header({ setModal }: Props) {
         </ul>
         <ul className="login-section">
           <li className="login-section__button">
-            <button>Sign Up</button>
+            <button
+              onClick={() => {
+                setModal("sign-up");
+              }}
+            >
+              Sign Up
+            </button>
           </li>
           <li className="login-section__button">
             <button onClick={() => setModal("log-in")}>Log in</button>

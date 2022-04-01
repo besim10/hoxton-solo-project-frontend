@@ -14,12 +14,21 @@ import Departments from "./Pages/Departments";
 import Payroll from "./Pages/Payroll";
 import Modals from "./Components/Modals/Modals";
 
+export type Admin = {
+  id: number;
+  fullName: string;
+  email: string;
+  password: string;
+  avatar: string;
+  hospitalId: number;
+};
+
 function App() {
-  const [admin, setAdmin] = useState(null);
+  const [admin, setAdmin] = useState<Admin | null>(null);
   const [modal, setModal] = useState("");
   return (
     <div className="App">
-      <Modals modal={modal} setModal={setModal} />
+      <Modals modal={modal} setModal={setModal} setAdmin={setAdmin} />
       <Header setModal={setModal} />
       <main className={`${admin === null ? "intro-main" : "logged-in__main"}`}>
         {admin === null ? null : <SideBar />}
