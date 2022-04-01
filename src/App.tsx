@@ -3,7 +3,7 @@ import Header from "./Components/Header";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Intro from "./Pages/Intro";
 import PageNotFound from "./Pages/PageNotFound";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "./Components/SideBar";
 import Dashboard from "./Pages/Dashboard";
 import Doctors from "./Pages/Doctors";
@@ -26,10 +26,25 @@ export type Admin = {
 function App() {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [modal, setModal] = useState("");
+  useEffect(() => {
+    if (localStorage.token)
+      fetch("http://localhost:8000/validate", {
+        headers: {
+          Authorization: localStorage.token,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((data) => {
+          if (data.error) console.log(data);
+          else {
+            setAdmin(data);
+          }
+        });
+  }, []);
   return (
     <div className="App">
       <Modals modal={modal} setModal={setModal} setAdmin={setAdmin} />
-      <Header setModal={setModal} />
+      <Header setModal={setModal} admin={admin} setAdmin={setAdmin} />
       <main className={`${admin === null ? "intro-main" : "logged-in__main"}`}>
         {admin === null ? null : <SideBar />}
         <Routes>

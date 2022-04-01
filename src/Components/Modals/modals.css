@@ -62,3 +62,39 @@
   font-weight: bold;
   cursor: pointer;
 }
+.password-error, .email-error{
+  color: red;
+}
+.admin_button{
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+  gap: 1rem;
+  padding: unset;
+  position: relative;
+}
+.admin_button img{
+  width: 45px;
+  border-radius: 50%;
+  height: 45px;
+  object-fit: cover;
+}
+.small-modal{
+  background-color: #1976d2;
+  color: white;
+  font-size: 1rem;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+.small-modal ul{
+  padding: 0.5rem;
+  display: grid;
+  gap: 1rem;
+  list-style-type: none;
+}
+.small-modal ul li{
+  display: grid;
+  grid-auto-flow: column;
+  place-items: center;
+}

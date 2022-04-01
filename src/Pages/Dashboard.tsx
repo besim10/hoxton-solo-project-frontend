@@ -1,4 +1,10 @@
 function Dashboard() {
-  return <main className="info-main">Dashboard here!</main>;
+  return (
+    <main className="info-main">
+      <ul>
+        <li></li>
+      </ul>
+    </main>
+  );
 }
 export default Dashboard;

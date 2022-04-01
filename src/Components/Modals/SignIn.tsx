@@ -2,12 +2,14 @@ import { Props } from "./Modals";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import xIcon from "./../../icons/x-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type Data = {
   email: string;
   password: string;
 };
 function SignIn({ modal, setModal, setAdmin }: Props) {
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   function LogIn(data: Data) {
     fetch(`http://localhost:8000/login`, {
@@ -21,9 +23,11 @@ function SignIn({ modal, setModal, setAdmin }: Props) {
       .then((data) => {
         if (data.admin) {
           setAdmin(data.admin);
+          localStorage.setItem("token", data.token);
           navigate("/dashboard");
+          setModal("success");
         } else {
-          alert(data.error);
+          setError(data.error);
         }
       });
   }
@@ -64,9 +68,11 @@ function SignIn({ modal, setModal, setAdmin }: Props) {
             </label>
             <label>
               PASSWORD:
-              <input type="passwrod" name="password" minLength={5} required />
+              <input type="password" name="password" minLength={5} required />
             </label>
-
+            {error !== "" ? (
+              <span className="password-error">{error}</span>
+            ) : null}
             <button type="submit">LOG IN</button>
           </form>
         </main>
