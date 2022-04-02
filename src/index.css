@@ -115,6 +115,11 @@ img {
   background-color: #fafafa;
   box-shadow: 0px 0px 10px 1px #dedfe0;
   padding: 1rem;
+  overflow-y: scroll;
+}
+.info-main.doctors-main{
+  display: grid;
+  gap: 0.8rem;
 }
 .dashboard-list{
   display: grid;
@@ -158,4 +163,70 @@ img {
   display: grid;
   justify-items: end;
   align-items: center;
+}
+
+.image-wrapper img{
+  object-fit: cover;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+}
+.info-main__header{
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+.doctors-table{
+  width: 100%;
+  border-collapse: collapse;
+  padding: 1rem;
+}
+.doctors-table th {
+  padding: 1rem 0.2rem;
+  text-align: left;
+}
+  
+.doctors-table td {
+  text-align: left;
+  padding: 0.2rem;
+  border-top: 1px solid rgb(210, 208, 208);
+}
+
+.doctor_table-item:nth-child(even){
+  background-color: #f2f2f2;
+}
+.doctor_table-item:hover {
+  background-color: #ddd;
+}
+.info-main__search{
+  display: grid;
+  grid-template-columns: min-content min-content;
+  place-items: center;
+}
+.info-main__search input{
+  border: none;
+  outline: 1px solid #5b97fe;
+  border-radius: 2px;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+}
+.info-main__search input:focus{
+  outline: 2px solid #5b97fe;
+  
+}
+.dots-button{
+  position: relative;
+  color: red;
+}
+.dots-dropdown{
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  display: grid;
+  gap:1rem;
+  padding: 1rem;
+  list-style: none;
+  border-radius: 2px;
+  color: white;
+  font-size: 1rem;
+  background-color: #4cbb60;
 }

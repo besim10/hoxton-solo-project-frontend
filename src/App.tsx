@@ -22,19 +22,36 @@ export type Admin = {
   avatar: string;
   hospitalId: number;
 };
-
+export type Department = {
+  id: number;
+  name: string;
+  hospitalId: number;
+  rooms: number;
+};
+export type Appointment = {
+  id: number;
+  patientId: number;
+  doctorId: number;
+  dateAndTime: string;
+  status: string;
+  treatment: string;
+  payment: number;
+};
 export type Doctor = {
   id: number;
   email: string;
   fullName: string;
-  phoneNumer: string;
+  phoneNumber: string;
   address: string;
   gender: string;
   avatar: string;
   employeedAt: string;
   salary: number;
   departmentId: number;
+  department: Department;
+  appointments: Appointment[];
 };
+
 function App() {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [modal, setModal] = useState("");
@@ -69,7 +86,7 @@ function App() {
           <Route index element={<Navigate to="/intro" />} />
           <Route path="/intro" element={<Intro />} />
           <Route path="/dashboard" element={<Dashboard doctors={doctors} />} />
-          <Route path="/doctors" element={<Doctors />} />
+          <Route path="/doctors" element={<Doctors doctors={doctors} />} />
           <Route path="/nurses" element={<Nurses />} />
           <Route path="/patients" element={<Patients />} />
           <Route path="/appointments" element={<Appointments />} />
