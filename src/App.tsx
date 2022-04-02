@@ -23,9 +23,22 @@ export type Admin = {
   hospitalId: number;
 };
 
+export type Doctor = {
+  id: number;
+  email: string;
+  fullName: string;
+  phoneNumer: string;
+  address: string;
+  gender: string;
+  avatar: string;
+  employeedAt: string;
+  salary: number;
+  departmentId: number;
+};
 function App() {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [modal, setModal] = useState("");
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
   useEffect(() => {
     if (localStorage.token)
       fetch("http://localhost:8000/validate", {
@@ -41,6 +54,11 @@ function App() {
           }
         });
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8000/doctors`)
+      .then((resp) => resp.json())
+      .then((data) => setDoctors(data));
+  }, []);
   return (
     <div className="App">
       <Modals modal={modal} setModal={setModal} setAdmin={setAdmin} />
@@ -50,7 +68,7 @@ function App() {
         <Routes>
           <Route index element={<Navigate to="/intro" />} />
           <Route path="/intro" element={<Intro />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard doctors={doctors} />} />
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/nurses" element={<Nurses />} />
           <Route path="/patients" element={<Patients />} />

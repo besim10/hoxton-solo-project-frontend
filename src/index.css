@@ -24,7 +24,7 @@ img {
 .navigation-header {
   display: grid;
   grid-template-columns: 1fr auto;
-  padding: 1rem;
+  padding-right: 1rem;
   box-shadow: 5px 0px 5px 3px #dedfe0;
 }
 
@@ -58,19 +58,18 @@ img {
   font-weight: 200;
 }
 .intro-main {
-  margin-top: 1rem;
+  padding: 1rem;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
   place-items: center;
 }
 .intro-main h1 {
   letter-spacing: 1rem;
+  max-width: min-content;
   text-align: center;
   line-height: 2;
 }
-.intro-main img {
-  width: 500px;
-}
+
 .page-not-found__main {
   display: grid;
   place-content: center;
@@ -81,7 +80,9 @@ img {
 }
 .logged-in__main {
   display: grid;
+  padding-right: 1rem;
   grid-template-columns: auto 1fr;
+  height: 87vh;
 }
 
 .side-bar h3 {
@@ -112,6 +113,49 @@ img {
 }
 .info-main {
   background-color: #fafafa;
-  padding: 1rem;
   box-shadow: 0px 0px 10px 1px #dedfe0;
+  padding: 1rem;
+}
+.dashboard-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+  gap: 1rem;
+}
+.dashboard-list__item{
+  display: grid;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  grid-template-columns: 1fr 1fr;
+}
+.dashboard-list__item__info p{
+  background-color: #5b97fe;
+  padding: 0.3rem;
+  border-radius: 5px;
+  color: white;
+}
+.dashboard-list__item__img.nurse_item,
+.dashboard-list__item__info.nurse_item__info p{
+  background-color: #4cbb60;
+}
+.dashboard-list__item__img.patient_item,
+.dashboard-list__item__info.patient_item__info p{
+  background-color: #7690a6;
+}
+.dashboard-list__item__img.appointment_item,
+.dashboard-list__item__info.appointment_item__info p{
+  background-color: #ffbd29;
+}
+.dashboard-list__item__img.appointment_item img{
+  padding: 0.4rem;
+}
+.dashboard-list__item__img{
+  border-radius: 50%;
+  background-color: #5b97fe;
+  padding: 1rem;
+}
+.dashboard-list__item__info{
+  display: grid;
+  justify-items: end;
+  align-items: center;
 }
