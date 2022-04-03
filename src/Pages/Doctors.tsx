@@ -21,7 +21,7 @@ function Doctors({ doctors }: Props) {
         </Button>
       </div>
       <section className="info-main__search">
-        <input type="search" name="search" placeholder="Search by Email" />
+        <input type="search" name="search" placeholder="Search by Full Name" />
         <Button size="large" variant="outlined">
           <PersonSearchIcon sx={{ fontSize: 30 }} />
         </Button>

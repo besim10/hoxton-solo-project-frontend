@@ -36,6 +36,8 @@ export type Appointment = {
   status: string;
   treatment: string;
   payment: number;
+  patient: Patient;
+  doctor: Doctor;
 };
 export type Doctor = {
   id: number;
@@ -51,11 +53,36 @@ export type Doctor = {
   department: Department;
   appointments: Appointment[];
 };
-
+export type Nurse = {
+  id: number;
+  email: string;
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+  avatar: string;
+  employeedAt: string;
+  salary: number;
+  departmentId: number;
+  department: Department;
+};
+export type Patient = {
+  id: number;
+  email: string;
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+  avatar: string;
+  gender: string;
+  appointments: Appointment[];
+};
 function App() {
   const [admin, setAdmin] = useState<Admin | null>(null);
   const [modal, setModal] = useState("");
   const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [nurses, setNurses] = useState<Nurse[]>([]);
+  const [patients, setPatients] = useState<Patient[]>([]);
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+
   useEffect(() => {
     if (localStorage.token)
       fetch("http://localhost:8000/validate", {
@@ -76,6 +103,21 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => setDoctors(data));
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8000/nurses`)
+      .then((resp) => resp.json())
+      .then((data) => setNurses(data));
+  }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8000/patients`)
+      .then((resp) => resp.json())
+      .then((data) => setPatients(data));
+  }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8000/appointments`)
+      .then((resp) => resp.json())
+      .then((data) => setAppointments(data));
+  }, []);
   return (
     <div className="App">
       <Modals modal={modal} setModal={setModal} setAdmin={setAdmin} />
@@ -87,9 +129,12 @@ function App() {
           <Route path="/intro" element={<Intro />} />
           <Route path="/dashboard" element={<Dashboard doctors={doctors} />} />
           <Route path="/doctors" element={<Doctors doctors={doctors} />} />
-          <Route path="/nurses" element={<Nurses />} />
-          <Route path="/patients" element={<Patients />} />
-          <Route path="/appointments" element={<Appointments />} />
+          <Route path="/nurses" element={<Nurses nurses={nurses} />} />
+          <Route path="/patients" element={<Patients patients={patients} />} />
+          <Route
+            path="/appointments"
+            element={<Appointments appointments={appointments} />}
+          />
           <Route path="/departments" element={<Departments />} />
           <Route path="/payrolls" element={<Payroll />} />
           <Route path="*" element={<PageNotFound />} />
