@@ -1,12 +1,17 @@
-import { Props } from "./Modals";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import xIcon from "./../../icons/x-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Admin } from "../../App";
 
 type Data = {
   email: string;
   password: string;
+};
+type Props = {
+  modal: string;
+  setModal: (value: string) => void;
+  setAdmin: (value: Admin | null) => void;
 };
 function SignIn({ modal, setModal, setAdmin }: Props) {
   const [error, setError] = useState("");

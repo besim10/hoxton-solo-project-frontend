@@ -13,6 +13,7 @@ import Appointments from "./Pages/Appointments";
 import Departments from "./Pages/Departments";
 import Payroll from "./Pages/Payroll";
 import Modals from "./Components/Modals/Modals";
+import AddDoctor from "./Pages/AddDoctor";
 
 export type Admin = {
   id: number;
@@ -135,8 +136,40 @@ function App() {
         <Routes>
           <Route index element={<Navigate to="/intro" />} />
           <Route path="/intro" element={<Intro />} />
-          <Route path="/dashboard" element={<Dashboard doctors={doctors} />} />
-          <Route path="/doctors" element={<Doctors doctors={doctors} />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                doctors={doctors}
+                nurses={nurses}
+                patients={patients}
+                appointments={appointments}
+              />
+            }
+          />
+          <Route
+            path="/doctors"
+            element={
+              <Doctors
+                doctors={doctors}
+                //@ts-ignore
+                setDoctors={setDoctors}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/addDoctor"
+            element={
+              <AddDoctor
+                departments={departments}
+                doctors={doctors}
+                //@ts-ignore
+                setDoctors={setDoctors}
+                setModal={setModal}
+              />
+            }
+          />
           <Route path="/nurses" element={<Nurses nurses={nurses} />} />
           <Route path="/patients" element={<Patients patients={patients} />} />
           <Route

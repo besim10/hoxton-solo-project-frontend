@@ -1,13 +1,18 @@
-import { Props } from "./Modals";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import xIcon from "./../../icons/x-icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Admin } from "../../App";
 type Data = {
   fullName: string;
   email: string;
   password: string;
   avatar: string;
+};
+type Props = {
+  modal: string;
+  setModal: (value: string) => void;
+  setAdmin: (value: Admin | null) => void;
 };
 function SignUp({ modal, setModal, setAdmin }: Props) {
   const [error, setError] = useState("");

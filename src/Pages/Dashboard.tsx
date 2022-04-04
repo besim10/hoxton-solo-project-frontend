@@ -1,4 +1,4 @@
-import { Doctor } from "../App";
+import { Appointment, Doctor, Nurse, Patient } from "../App";
 import doctorIcon from "../icons/dashboard-doctor-icon.svg";
 import nurseIcon from "../icons/dashboard-nurse-icon.svg";
 import patientIcon from "../icons/dashboard-patient-icon.svg";
@@ -6,8 +6,11 @@ import appointmentIcon from "../icons/dashboard-appointment-icon.svg";
 
 type Props = {
   doctors: Doctor[];
+  nurses: Nurse[];
+  patients: Patient[];
+  appointments: Appointment[];
 };
-function Dashboard({ doctors }: Props) {
+function Dashboard({ doctors, nurses, patients, appointments }: Props) {
   if (doctors.length === 0) return <h1>Loading</h1>;
   return (
     <main className="info-main">
@@ -26,7 +29,7 @@ function Dashboard({ doctors }: Props) {
             <img src={nurseIcon} alt="" />
           </div>
           <div className="dashboard-list__item__info nurse_item__info">
-            <span>{doctors.length}</span>
+            <span>{nurses.length}</span>
             <p>Nurses</p>
           </div>
         </li>
@@ -35,7 +38,7 @@ function Dashboard({ doctors }: Props) {
             <img src={patientIcon} alt="" />
           </div>
           <div className="dashboard-list__item__info patient_item__info">
-            <span>{doctors.length}</span>
+            <span>{patients.length}</span>
             <p>Patients</p>
           </div>
         </li>
@@ -44,7 +47,7 @@ function Dashboard({ doctors }: Props) {
             <img src={appointmentIcon} alt="" />
           </div>
           <div className="dashboard-list__item__info appointment_item__info">
-            <span>{doctors.length}</span>
+            <span>{appointments.length}</span>
             <p>Appointments</p>
           </div>
         </li>

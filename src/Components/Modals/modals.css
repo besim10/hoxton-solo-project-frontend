@@ -6,10 +6,12 @@
   backdrop-filter: blur(1px);
   place-content: center;
   position: fixed;
+  z-index: 20;
 }
 .modal-container {
   display: grid;
   background-color: white;
+  place-items: center;
   border-radius: 1rem;
   position: relative;
   padding: 1rem;
@@ -97,4 +99,8 @@
   display: grid;
   grid-auto-flow: column;
   place-items: center;
+}
+.modal-body .paragraph-to-delete{
+  max-width: 34ch;
+  color: #939393;
 }

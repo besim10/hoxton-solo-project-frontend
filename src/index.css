@@ -211,27 +211,32 @@ img {
   font-size: 0.9rem;
 }
 .info-main__search input:focus{
-  outline: 2px solid #5b97fe;
-  
+  outline: 2px solid #5b97fe; 
 }
-
 .dots-button{
   position: relative;
 }
-.dots-dropdown{
+.dots-dropdown__list{
   position: absolute;
   top: 30px;
-  right: 50px;
+  right: 30px;
   display: grid;
-  gap:1rem;
-  padding: 1rem;
   list-style: none;
   border-radius: 2px;
-  color: white;
+  border: 1px solid white;
   font-size: 1rem;
-  background-color: #4cbb60;
+  background-color: white;
 }
-
+.dots-dropdown__list-item{
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.3rem 1rem;
+  place-items: center;
+  grid-template-columns: auto 1fr;
+}
+.dots-dropdown__list-item:hover{
+  background-color: #dedfe0;
+}
 .doctor_table-item .Completed{
   background-color: #4cbb60;
 }
@@ -275,4 +280,36 @@ img {
 }
 .department_list_description span{
   font-weight: bolder;
+}
+.general-form{
+  display: grid;
+  padding: 1rem;
+  gap: 1rem;
+  grid-template-columns: auto auto;
+  place-content: center;
+}
+.general-form label{
+  display: grid;
+  grid-auto-flow: row;
+  gap: 0.1rem;
+}
+
+.general-form input, .general-form select{
+  border-radius: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #4cbb60;
+}
+.general-form_secondSection,
+.general-form_firstSection{
+  display: grid;
+  gap: 1rem;
+  place-content: flex-end;
+}
+.general-form button{
+  padding: 0.6rem 0.8rem;
+  background-color: #5b97fe;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
 }

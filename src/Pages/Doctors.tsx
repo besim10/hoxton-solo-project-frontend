@@ -3,17 +3,28 @@ import { Doctor } from "../App";
 import AddIcon from "@mui/icons-material/Add";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import DoctorListItem from "../Components/DoctorListItem";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   doctors: Doctor[];
+  setModal: (value: string) => void;
+  setDoctors: (value: Doctor) => void;
 };
-function Doctors({ doctors }: Props) {
+function Doctors({ doctors, setModal, setDoctors }: Props) {
+  const navigate = useNavigate();
   if (doctors.length === 0) return <h1>Loading...</h1>;
   return (
     <main className="info-main doctors-main">
       <div className="info-main__header">
         <h2>Doctors</h2>
-        <Button size="medium" variant="contained" startIcon={<AddIcon />}>
+        <Button
+          onClick={() => {
+            navigate("/addDoctor");
+          }}
+          size="medium"
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
           Add Doctor
         </Button>
       </div>
@@ -39,7 +50,13 @@ function Doctors({ doctors }: Props) {
         </thead>
         <tbody>
           {doctors.map((doctor, index) => (
-            <DoctorListItem doctor={doctor} index={index} />
+            <DoctorListItem
+              doctor={doctor}
+              key={index}
+              setModal={setModal}
+              doctors={doctors}
+              setDoctors={setDoctors}
+            />
           ))}
         </tbody>
       </table>
