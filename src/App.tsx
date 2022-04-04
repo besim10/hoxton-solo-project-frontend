@@ -27,6 +27,8 @@ export type Department = {
   name: string;
   hospitalId: number;
   rooms: number;
+  doctors: Doctor[];
+  nurses: Nurse[];
 };
 export type Appointment = {
   id: number;
@@ -82,6 +84,7 @@ function App() {
   const [nurses, setNurses] = useState<Nurse[]>([]);
   const [patients, setPatients] = useState<Patient[]>([]);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [departments, setDepartments] = useState<Department[]>([]);
 
   useEffect(() => {
     if (localStorage.token)
@@ -118,6 +121,11 @@ function App() {
       .then((resp) => resp.json())
       .then((data) => setAppointments(data));
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8000/departments`)
+      .then((resp) => resp.json())
+      .then((data) => setDepartments(data));
+  }, []);
   return (
     <div className="App">
       <Modals modal={modal} setModal={setModal} setAdmin={setAdmin} />
@@ -135,7 +143,10 @@ function App() {
             path="/appointments"
             element={<Appointments appointments={appointments} />}
           />
-          <Route path="/departments" element={<Departments />} />
+          <Route
+            path="/departments"
+            element={<Departments departments={departments} />}
+          />
           <Route path="/payrolls" element={<Payroll />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
