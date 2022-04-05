@@ -1,18 +1,29 @@
 import { Button, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Appointment } from "../App";
+import AppointmentListItem from "../Components/AppointmentListItem";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   appointments: Appointment[];
+  setAppointments: (value: Appointment) => void;
+  setModal: (value: string) => void;
 };
-function Appointments({ appointments }: Props) {
+function Appointments({ appointments, setAppointments, setModal }: Props) {
+  const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
       <div className="info-main__header">
         <h2>Appointments</h2>
-        <Button size="medium" variant="contained" startIcon={<AddIcon />}>
+        <Button
+          onClick={() => {
+            navigate("/addAppointment");
+          }}
+          size="medium"
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
           Make Appointment
         </Button>
       </div>
@@ -43,30 +54,13 @@ function Appointments({ appointments }: Props) {
         </thead>
         <tbody>
           {appointments.map((appointment, index) => (
-            <tr className="doctor_table-item" key={index}>
-              <td>{appointment.id}</td>
-              <td>{appointment.patient.id}</td>
-              <td>{appointment.patient.fullName}</td>
-              <td>{appointment.doctor.id}</td>
-              <td>{appointment.doctor.fullName}</td>
-              <td>{appointment.dateAndTime}</td>
-              <td className={`${appointment.status}`}>{appointment.status}</td>
-              {appointment.treatment === null ? (
-                <td>Not treated</td>
-              ) : (
-                <td>{appointment.treatment}</td>
-              )}
-              {appointment.payment === null ? (
-                <td>Null</td>
-              ) : (
-                <td>{appointment.payment.toFixed(2)} €</td>
-              )}
-              <td>
-                <IconButton aria-label="dots" className={"dots-button"}>
-                  <MoreVertIcon />
-                </IconButton>
-              </td>
-            </tr>
+            <AppointmentListItem
+              appointment={appointment}
+              appointments={appointments}
+              setAppointments={setAppointments}
+              setModal={setModal}
+              key={index}
+            />
           ))}
         </tbody>
       </table>

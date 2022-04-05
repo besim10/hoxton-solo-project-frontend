@@ -313,3 +313,15 @@ img {
   border: none;
   border-radius: 1rem;
 }
+.forms-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.general-form.new-pacient-form{
+  display: grid;
+  grid-template-columns: unset;
+}
+.general-form.existing-pacient-form{
+  grid-template-columns: unset;
+  place-content: start;
+}

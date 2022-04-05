@@ -104,3 +104,22 @@
   max-width: 34ch;
   color: #939393;
 }
+.modal-wrapper.complete-modal-wrapper{
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+.modal-wrapper.complete-modal-wrapper img, .modal-wrapper.complete-modal-wrapper button{
+  background-color: #4cbb60;
+}
+.complete-modal-wrapper form label input:focus{
+  outline: 2px solid #4cbb60;
+}
+.complete-modal-wrapper form label textarea:focus{
+  outline: 2px solid #4cbb60;
+}
+.complete-modal-wrapper form label textarea {
+  resize: vertical;
+  padding: 0.3rem;
+  font-family:  Arial, Helvetica, sans-serif
+}

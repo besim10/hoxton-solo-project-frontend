@@ -2,9 +2,11 @@ import { Admin } from "../../App";
 import "./modals.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import SuccesfullyCreatedNewAppointment from "./SuccesfullyCreatedNewAppointment";
 import SuccesfullyCreatedNewDoctor from "./SuccesfullyCreatedNewDoctor";
 import SuccesfullyDeletedRecord from "./SuccesfullyDeletedRecord";
 import SuccesfullySignedIn from "./SuccesfullySignedIn";
+import SuccesfullyUpdatedRecord from "./SuccesfullyUpdatedRecord";
 import SuccesfullyNewAdmin from "./SuccessfullyNewAdmin";
 
 type Props = {
@@ -24,8 +26,12 @@ function Modals({ modal, setModal, setAdmin }: Props) {
       return <SuccesfullyNewAdmin setModal={setModal} />;
     case "success-new-doctor":
       return <SuccesfullyCreatedNewDoctor setModal={setModal} />;
+    case "success-new-appointment":
+      return <SuccesfullyCreatedNewAppointment setModal={setModal} />;
     case "success-delete-record":
       return <SuccesfullyDeletedRecord setModal={setModal} />;
+    case "success-update-record":
+      return <SuccesfullyUpdatedRecord setModal={setModal} />;
 
     default:
       return null;

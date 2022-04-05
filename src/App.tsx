@@ -14,6 +14,7 @@ import Departments from "./Pages/Departments";
 import Payroll from "./Pages/Payroll";
 import Modals from "./Components/Modals/Modals";
 import AddDoctor from "./Pages/AddDoctor";
+import AddAppointment from "./Pages/AddAppointment";
 
 export type Admin = {
   id: number;
@@ -174,7 +175,31 @@ function App() {
           <Route path="/patients" element={<Patients patients={patients} />} />
           <Route
             path="/appointments"
-            element={<Appointments appointments={appointments} />}
+            element={
+              <Appointments
+                setModal={setModal}
+                appointments={appointments}
+                //@ts-ignore
+                setAppointments={setAppointments}
+              />
+            }
+          />
+          <Route
+            path="/addAppointment"
+            element={
+              <AddAppointment
+                appointments={appointments}
+                //@ts-ignore
+                setAppointments={setAppointments}
+                setModal={setModal}
+                doctors={doctors}
+                //@ts-ignore
+                setDoctors={setDoctors}
+                patients={patients}
+                //@ts-ignore
+                setPatients={setPatients}
+              />
+            }
           />
           <Route
             path="/departments"
