@@ -3,16 +3,28 @@ import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Nurse } from "../App";
+import { useNavigate } from "react-router-dom";
+import NurseListItem from "../Components/NurseListItem";
 
 type Props = {
   nurses: Nurse[];
+  setNurses: (value: Nurse) => void;
+  setModal: (value: string) => void;
 };
-function Nurses({ nurses }: Props) {
+function Nurses({ nurses, setNurses, setModal }: Props) {
+  const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
       <div className="info-main__header">
         <h2>Nurses</h2>
-        <Button size="medium" variant="contained" startIcon={<AddIcon />}>
+        <Button
+          size="medium"
+          variant="contained"
+          onClick={() => {
+            navigate("/addNurse");
+          }}
+          startIcon={<AddIcon />}
+        >
           Add Nurse
         </Button>
       </div>
@@ -37,22 +49,13 @@ function Nurses({ nurses }: Props) {
         </thead>
         <tbody>
           {nurses.map((nurse, index) => (
-            <tr className="doctor_table-item" key={index}>
-              <td className="image-wrapper">
-                <img src={nurse.avatar} alt="" />
-              </td>
-              <td>{nurse.id}</td>
-              <td>{nurse.fullName}</td>
-              <td>{nurse.phoneNumber}</td>
-              <td>{nurse.address}</td>
-              <td>{nurse.salary.toFixed(3)} €</td>
-              <td>{nurse.department.name}</td>
-              <td>
-                <IconButton aria-label="dots" className={"dots-button"}>
-                  <MoreVertIcon />
-                </IconButton>
-              </td>
-            </tr>
+            <NurseListItem
+              nurse={nurse}
+              key={index}
+              nurses={nurses}
+              setModal={setModal}
+              setNurses={setNurses}
+            />
           ))}
         </tbody>
       </table>

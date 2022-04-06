@@ -15,6 +15,9 @@ import Payroll from "./Pages/Payroll";
 import Modals from "./Components/Modals/Modals";
 import AddDoctor from "./Pages/AddDoctor";
 import AddAppointment from "./Pages/AddAppointment";
+import AddNurse from "./Pages/AddNurse";
+import AddPatient from "./Pages/AddPatient";
+import UpdateDoctor from "./Pages/UpdateDoctor";
 
 export type Admin = {
   id: number;
@@ -171,8 +174,63 @@ function App() {
               />
             }
           />
-          <Route path="/nurses" element={<Nurses nurses={nurses} />} />
-          <Route path="/patients" element={<Patients patients={patients} />} />
+          <Route
+            path="/nurses"
+            element={
+              <Nurses
+                nurses={nurses}
+                //@ts-ignore
+                setNurses={setNurses}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/addNurse"
+            element={
+              <AddNurse
+                departments={departments}
+                nurses={nurses}
+                //@ts-ignore
+                setNurses={setNurses}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/patients"
+            element={
+              <Patients
+                patients={patients}
+                //@ts-ignore
+                setPatients={setPatients}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/addPatient"
+            element={
+              <AddPatient
+                patients={patients}
+                //@ts-ignore
+                setPatients={setPatients}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/doctors/:id"
+            element={
+              <UpdateDoctor
+                departments={departments}
+                doctors={doctors}
+                //@ts-ignore
+                setDoctors={setDoctors}
+                setModal={setModal}
+              />
+            }
+          />
           <Route
             path="/appointments"
             element={

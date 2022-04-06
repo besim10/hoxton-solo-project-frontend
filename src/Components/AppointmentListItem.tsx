@@ -218,15 +218,6 @@ function AppointmentListItem({
                       <EditIcon />
                       Edit
                     </li>
-                    <li
-                      className="dots-dropdown__list-item"
-                      onClick={() => {
-                        deleteAppointmentFromServer(appointment.id);
-                      }}
-                    >
-                      <DeleteIcon />
-                      Delete
-                    </li>
                   </>
                 )}
               </ul>

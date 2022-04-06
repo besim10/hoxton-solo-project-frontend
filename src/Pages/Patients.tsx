@@ -4,16 +4,28 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Patient } from "../App";
 import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
+import PatientListItem from "../Components/PatientListItem";
 
 type Props = {
   patients: Patient[];
+  setPatients: (value: Patient) => void;
+  setModal: (value: string) => void;
 };
-function Patients({ patients }: Props) {
+function Patients({ patients, setPatients, setModal }: Props) {
+  const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
       <div className="info-main__header">
         <h2>Patients</h2>
-        <Button size="medium" variant="contained" startIcon={<AddIcon />}>
+        <Button
+          size="medium"
+          onClick={() => {
+            navigate("/addPatient");
+          }}
+          variant="contained"
+          startIcon={<AddIcon />}
+        >
           Add Patient
         </Button>
       </div>
@@ -38,22 +50,13 @@ function Patients({ patients }: Props) {
         </thead>
         <tbody>
           {patients.map((patient, index) => (
-            <tr className="doctor_table-item" key={index}>
-              <td className="image-wrapper">
-                <img src={patient.avatar} alt="" />
-              </td>
-              <td>{patient.id}</td>
-              <td>{patient.fullName}</td>
-              <td>{patient.phoneNumber}</td>
-              <td>{patient.address}</td>
-              <td>{patient.gender}</td>
-              <td>{patient.appointments.length}</td>
-              <td>
-                <IconButton aria-label="dots" className={"dots-button"}>
-                  <MoreVertIcon />
-                </IconButton>
-              </td>
-            </tr>
+            <PatientListItem
+              patient={patient}
+              key={index}
+              patients={patients}
+              setPatients={setPatients}
+              setModal={setModal}
+            />
           ))}
         </tbody>
       </table>

@@ -4,6 +4,8 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SuccesfullyCreatedNewAppointment from "./SuccesfullyCreatedNewAppointment";
 import SuccesfullyCreatedNewDoctor from "./SuccesfullyCreatedNewDoctor";
+import SuccesfullyCreatedNewNurse from "./SuccesfullyCreatedNewNurse";
+import SuccesfullyCreatedNewPatient from "./SuccesfullyCreatedNewPatient";
 import SuccesfullyDeletedRecord from "./SuccesfullyDeletedRecord";
 import SuccesfullySignedIn from "./SuccesfullySignedIn";
 import SuccesfullyUpdatedRecord from "./SuccesfullyUpdatedRecord";
@@ -32,6 +34,10 @@ function Modals({ modal, setModal, setAdmin }: Props) {
       return <SuccesfullyDeletedRecord setModal={setModal} />;
     case "success-update-record":
       return <SuccesfullyUpdatedRecord setModal={setModal} />;
+    case "success-new-nurse":
+      return <SuccesfullyCreatedNewNurse setModal={setModal} />;
+    case "success-new-patient":
+      return <SuccesfullyCreatedNewPatient setModal={setModal} />;
 
     default:
       return null;

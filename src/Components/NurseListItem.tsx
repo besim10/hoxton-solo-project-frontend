@@ -1,22 +1,21 @@
 import IconButton from "@mui/material/IconButton";
-import { Doctor } from "../App";
+import { Nurse } from "../App";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 type Props = {
-  doctor: Doctor;
+  nurse: Nurse;
   setModal: (value: string) => void;
-  doctors: Doctor[];
-  setDoctors: (value: Doctor) => void;
+  nurses: Nurse[];
+  setNurses: (value: Nurse) => void;
 };
-function DoctorListItem({ doctor, setModal, doctors, setDoctors }: Props) {
+function NurseListItem({ nurse, setModal, nurses, setNurses }: Props) {
   const [showDotsDropList, setShowDotsDropList] = useState(false);
 
-  const deleteDoctorFromServer = (id: number) => {
-    fetch(`http://localhost:8000/doctors/${id}`, {
+  const deleteNurseFromServer = (id: number) => {
+    fetch(`http://localhost:8000/nurses/${id}`, {
       method: "DELETE",
     })
       .then((resp) => resp.json())
@@ -24,10 +23,10 @@ function DoctorListItem({ doctor, setModal, doctors, setDoctors }: Props) {
         if (data.error) {
           alert(data.error);
         } else {
-          let updatedDoctors = [...doctors];
-          updatedDoctors = updatedDoctors.filter((doctor) => doctor.id !== id);
+          let updatedNurses = [...nurses];
+          updatedNurses = updatedNurses.filter((nurse) => nurse.id !== id);
           //@ts-ignore
-          setDoctors(updatedDoctors);
+          setNurses(updatedNurses);
           setModal("success-delete-record");
         }
       });
@@ -35,15 +34,14 @@ function DoctorListItem({ doctor, setModal, doctors, setDoctors }: Props) {
   return (
     <tr className="doctor_table-item">
       <td className="image-wrapper">
-        <img src={doctor.avatar} alt="" />
+        <img src={nurse.avatar} alt="" />
       </td>
-      <td>{doctor.id}</td>
-      <td>{doctor.fullName}</td>
-      <td>{doctor.phoneNumber}</td>
-      <td>{doctor.address}</td>
-      <td>{doctor.salary} €</td>
-      <td>{doctor?.department?.name}</td>
-      <td>{doctor?.appointments?.length}</td>
+      <td>{nurse.id}</td>
+      <td>{nurse.fullName}</td>
+      <td>{nurse.phoneNumber}</td>
+      <td>{nurse.address}</td>
+      <td>{nurse.salary} €</td>
+      <td>{nurse?.department?.name}</td>
       <td>
         <IconButton
           aria-label="dots"
@@ -55,16 +53,14 @@ function DoctorListItem({ doctor, setModal, doctors, setDoctors }: Props) {
           <MoreVertIcon />
           {showDotsDropList ? (
             <ul className="dots-dropdown__list">
-              <Link to={`/doctors/${doctor.id}`}>
-                <li className="dots-dropdown__list-item">
-                  <EditIcon />
-                  Edit
-                </li>
-              </Link>
+              <li className="dots-dropdown__list-item">
+                <EditIcon />
+                Edit
+              </li>
               <li
                 className="dots-dropdown__list-item"
                 onClick={() => {
-                  deleteDoctorFromServer(doctor.id);
+                  deleteNurseFromServer(nurse.id);
                 }}
               >
                 <DeleteIcon />
@@ -77,4 +73,4 @@ function DoctorListItem({ doctor, setModal, doctors, setDoctors }: Props) {
     </tr>
   );
 }
-export default DoctorListItem;
+export default NurseListItem;
