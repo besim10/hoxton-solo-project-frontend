@@ -330,3 +330,8 @@ img {
   grid-template-columns: unset;
   place-content: start;
 }
+.dots-button.department-section{
+  position: absolute;
+  right: 0;
+  top: 0;
+}

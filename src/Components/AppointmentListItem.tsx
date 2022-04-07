@@ -8,6 +8,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import TaskIcon from "@mui/icons-material/Task";
 import xIcon from "./../icons/x-icon.svg";
+import { Link } from "react-router-dom";
 
 type Props = {
   appointments: Appointment[];
@@ -179,10 +180,12 @@ function AppointmentListItem({
                 {appointment.status === "Completed" ||
                 appointment.status === "Canceled" ? (
                   <>
-                    <li className="dots-dropdown__list-item">
-                      <EditIcon />
-                      Edit
-                    </li>
+                    <Link to={`/appointments/${appointment.id}`}>
+                      <li className="dots-dropdown__list-item">
+                        <EditIcon />
+                        Edit
+                      </li>
+                    </Link>
                     <li
                       className="dots-dropdown__list-item"
                       onClick={() => {
@@ -214,10 +217,12 @@ function AppointmentListItem({
                       <CheckCircleIcon />
                       Complete
                     </li>
-                    <li className="dots-dropdown__list-item">
-                      <EditIcon />
-                      Edit
-                    </li>
+                    <Link to={`/appointments/${appointment.id}`}>
+                      <li className="dots-dropdown__list-item">
+                        <EditIcon />
+                        Edit
+                      </li>
+                    </Link>
                   </>
                 )}
               </ul>

@@ -18,6 +18,11 @@ import AddAppointment from "./Pages/AddAppointment";
 import AddNurse from "./Pages/AddNurse";
 import AddPatient from "./Pages/AddPatient";
 import UpdateDoctor from "./Pages/UpdateDoctor";
+import UpdateNurse from "./Pages/UpdateNurse";
+import UpdatePatient from "./Pages/UpdatePatient";
+import UpdateAppointment from "./Pages/UpdateAppointment";
+import AddDepartment from "./Pages/AddDepartment";
+import UpdateDepartment from "./Pages/UpdateDepartment";
 
 export type Admin = {
   id: number;
@@ -175,6 +180,18 @@ function App() {
             }
           />
           <Route
+            path="/doctors/:id"
+            element={
+              <UpdateDoctor
+                departments={departments}
+                doctors={doctors}
+                //@ts-ignore
+                setDoctors={setDoctors}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
             path="/nurses"
             element={
               <Nurses
@@ -189,6 +206,18 @@ function App() {
             path="/addNurse"
             element={
               <AddNurse
+                departments={departments}
+                nurses={nurses}
+                //@ts-ignore
+                setNurses={setNurses}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/nurses/:id"
+            element={
+              <UpdateNurse
                 departments={departments}
                 nurses={nurses}
                 //@ts-ignore
@@ -220,13 +249,13 @@ function App() {
             }
           />
           <Route
-            path="/doctors/:id"
+            path="/patients/:id"
             element={
-              <UpdateDoctor
+              <UpdatePatient
                 departments={departments}
-                doctors={doctors}
+                patients={patients}
                 //@ts-ignore
-                setDoctors={setDoctors}
+                setPatients={setPatients}
                 setModal={setModal}
               />
             }
@@ -260,8 +289,48 @@ function App() {
             }
           />
           <Route
+            path="/appointments/:id"
+            element={
+              <UpdateAppointment
+                appointments={appointments}
+                //@ts-ignore
+                setAppointments={setAppointments}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
             path="/departments"
-            element={<Departments departments={departments} />}
+            element={
+              <Departments
+                departments={departments}
+                //@ts-ignore
+                setDepartments={setDepartments}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/addDepartment"
+            element={
+              <AddDepartment
+                departments={departments}
+                //@ts-ignore
+                setDepartments={setDepartments}
+                setModal={setModal}
+              />
+            }
+          />
+          <Route
+            path="/departments/:id"
+            element={
+              <UpdateDepartment
+                departments={departments}
+                //@ts-ignore
+                setDepartments={setDepartments}
+                setModal={setModal}
+              />
+            }
           />
           <Route path="/payrolls" element={<Payroll />} />
           <Route path="*" element={<PageNotFound />} />

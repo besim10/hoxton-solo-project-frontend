@@ -3,6 +3,7 @@ import "./modals.css";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SuccesfullyCreatedNewAppointment from "./SuccesfullyCreatedNewAppointment";
+import SuccesfullyCreatedNewDepartment from "./SuccesfullyCreatedNewDepartment";
 import SuccesfullyCreatedNewDoctor from "./SuccesfullyCreatedNewDoctor";
 import SuccesfullyCreatedNewNurse from "./SuccesfullyCreatedNewNurse";
 import SuccesfullyCreatedNewPatient from "./SuccesfullyCreatedNewPatient";
@@ -38,7 +39,8 @@ function Modals({ modal, setModal, setAdmin }: Props) {
       return <SuccesfullyCreatedNewNurse setModal={setModal} />;
     case "success-new-patient":
       return <SuccesfullyCreatedNewPatient setModal={setModal} />;
-
+    case "success-new-department":
+      return <SuccesfullyCreatedNewDepartment setModal={setModal} />;
     default:
       return null;
   }

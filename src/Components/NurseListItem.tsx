@@ -4,6 +4,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   nurse: Nurse;
@@ -53,10 +54,12 @@ function NurseListItem({ nurse, setModal, nurses, setNurses }: Props) {
           <MoreVertIcon />
           {showDotsDropList ? (
             <ul className="dots-dropdown__list">
-              <li className="dots-dropdown__list-item">
-                <EditIcon />
-                Edit
-              </li>
+              <Link to={`/nurses/${nurse.id}`}>
+                <li className="dots-dropdown__list-item">
+                  <EditIcon />
+                  Edit
+                </li>
+              </Link>
               <li
                 className="dots-dropdown__list-item"
                 onClick={() => {

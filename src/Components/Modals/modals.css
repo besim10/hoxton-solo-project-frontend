@@ -115,10 +115,12 @@
 .complete-modal-wrapper form label input:focus{
   outline: 2px solid #4cbb60;
 }
-.complete-modal-wrapper form label textarea:focus{
+.complete-modal-wrapper form label textarea:focus,
+.general-form_firstSection textarea{
   outline: 2px solid #4cbb60;
 }
-.complete-modal-wrapper form label textarea {
+.complete-modal-wrapper form label textarea,
+.general-form_firstSection textarea {
   resize: vertical;
   padding: 0.3rem;
   font-family:  Arial, Helvetica, sans-serif
