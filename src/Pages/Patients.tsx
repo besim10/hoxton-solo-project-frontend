@@ -1,11 +1,10 @@
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Patient } from "../App";
-import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import PatientListItem from "../Components/PatientListItem";
+import { useState } from "react";
 
 type Props = {
   patients: Patient[];
@@ -13,6 +12,13 @@ type Props = {
   setModal: (value: string) => void;
 };
 function Patients({ patients, setPatients, setModal }: Props) {
+  const [search, setSearch] = useState("");
+  const patientsToShow = () => {
+    return patients.filter((patient) =>
+      patient.fullName.toUpperCase().includes(search.toUpperCase())
+    );
+  };
+
   const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
@@ -30,7 +36,14 @@ function Patients({ patients, setPatients, setModal }: Props) {
         </Button>
       </div>
       <section className="info-main__search">
-        <input type="search" name="search" placeholder="Search by Full Name" />
+        <input
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          type="search"
+          name="search"
+          placeholder="Search by Full Name"
+        />
         <Button size="large" variant="outlined">
           <PersonSearchIcon sx={{ fontSize: 30 }} />
         </Button>
@@ -49,7 +62,7 @@ function Patients({ patients, setPatients, setModal }: Props) {
           </tr>
         </thead>
         <tbody>
-          {patients.map((patient, index) => (
+          {patientsToShow().map((patient, index) => (
             <PatientListItem
               patient={patient}
               key={index}

@@ -5,6 +5,7 @@ import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Nurse } from "../App";
 import { useNavigate } from "react-router-dom";
 import NurseListItem from "../Components/NurseListItem";
+import { useState } from "react";
 
 type Props = {
   nurses: Nurse[];
@@ -12,6 +13,12 @@ type Props = {
   setModal: (value: string) => void;
 };
 function Nurses({ nurses, setNurses, setModal }: Props) {
+  const [search, setSearch] = useState("");
+  const nursesToShow = () => {
+    return nurses.filter((nurse) =>
+      nurse.fullName.toUpperCase().includes(search.toUpperCase())
+    );
+  };
   const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
@@ -29,7 +36,14 @@ function Nurses({ nurses, setNurses, setModal }: Props) {
         </Button>
       </div>
       <section className="info-main__search">
-        <input type="search" name="search" placeholder="Search by Full Name" />
+        <input
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          type="search"
+          name="search"
+          placeholder="Search by Full Name"
+        />
         <Button size="large" variant="outlined">
           <PersonSearchIcon sx={{ fontSize: 30 }} />
         </Button>
@@ -48,7 +62,7 @@ function Nurses({ nurses, setNurses, setModal }: Props) {
           </tr>
         </thead>
         <tbody>
-          {nurses.map((nurse, index) => (
+          {nursesToShow().map((nurse, index) => (
             <NurseListItem
               nurse={nurse}
               key={index}

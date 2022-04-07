@@ -4,6 +4,7 @@ import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import { Appointment } from "../App";
 import AppointmentListItem from "../Components/AppointmentListItem";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type Props = {
   appointments: Appointment[];
@@ -11,6 +12,16 @@ type Props = {
   setModal: (value: string) => void;
 };
 function Appointments({ appointments, setAppointments, setModal }: Props) {
+  const [search, setSearch] = useState("");
+  const appointmentsToShow = () => {
+    return appointments.filter(
+      (appointment) =>
+        appointment.patient.fullName
+          .toUpperCase()
+          .includes(search.toUpperCase()) ||
+        appointment.doctor.fullName.toUpperCase().includes(search.toUpperCase())
+    );
+  };
   const navigate = useNavigate();
   return (
     <main className="info-main doctors-main">
@@ -31,6 +42,9 @@ function Appointments({ appointments, setAppointments, setModal }: Props) {
         <input
           type="search"
           name="search"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
           placeholder="Patient/Doctor Full Name"
         />
         <Button size="large" variant="outlined">
@@ -53,7 +67,7 @@ function Appointments({ appointments, setAppointments, setModal }: Props) {
           </tr>
         </thead>
         <tbody>
-          {appointments.map((appointment, index) => (
+          {appointmentsToShow().map((appointment, index) => (
             <AppointmentListItem
               appointment={appointment}
               appointments={appointments}

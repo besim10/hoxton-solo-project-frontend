@@ -4,6 +4,7 @@ import AddIcon from "@mui/icons-material/Add";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import DoctorListItem from "../Components/DoctorListItem";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type Props = {
   doctors: Doctor[];
@@ -11,8 +12,15 @@ type Props = {
   setDoctors: (value: Doctor) => void;
 };
 function Doctors({ doctors, setModal, setDoctors }: Props) {
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
   if (doctors.length === 0) return <h1>Loading...</h1>;
+
+  const doctorsToShow = () => {
+    return doctors.filter((doctor) =>
+      doctor.fullName.toUpperCase().includes(search.toUpperCase())
+    );
+  };
   return (
     <main className="info-main doctors-main">
       <div className="info-main__header">
@@ -29,7 +37,14 @@ function Doctors({ doctors, setModal, setDoctors }: Props) {
         </Button>
       </div>
       <section className="info-main__search">
-        <input type="search" name="search" placeholder="Search by Full Name" />
+        <input
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          type="search"
+          name="search"
+          placeholder="Search by Full Name"
+        />
         <Button size="large" variant="outlined">
           <PersonSearchIcon sx={{ fontSize: 30 }} />
         </Button>
@@ -49,7 +64,7 @@ function Doctors({ doctors, setModal, setDoctors }: Props) {
           </tr>
         </thead>
         <tbody>
-          {doctors.map((doctor, index) => (
+          {doctorsToShow().map((doctor, index) => (
             <DoctorListItem
               doctor={doctor}
               key={index}
