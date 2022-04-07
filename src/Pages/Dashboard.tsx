@@ -13,7 +13,8 @@ type Props = {
 function Dashboard({ doctors, nurses, patients, appointments }: Props) {
   if (doctors.length === 0) return <h1>Loading</h1>;
   return (
-    <main className="info-main">
+    <main className="info-main dashboard-main">
+      <h2>Dashboard</h2>
       <ul className="dashboard-list">
         <li className="dashboard-list__item">
           <div className="dashboard-list__item__img doctor_item">

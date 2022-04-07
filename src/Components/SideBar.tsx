@@ -49,9 +49,9 @@ function SideBar() {
           </NavLink>
         </li>
         <li className="side-bar-list__item">
-          <NavLink to="payrolls">
+          <NavLink to="finance">
             <img src={payrollIcon} alt="" />
-            <span>Payroll</span>
+            <span>Finance</span>
           </NavLink>
         </li>
       </ul>

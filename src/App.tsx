@@ -11,7 +11,6 @@ import Nurses from "./Pages/Nurses";
 import Patients from "./Pages/Patients";
 import Appointments from "./Pages/Appointments";
 import Departments from "./Pages/Departments";
-import Payroll from "./Pages/Payroll";
 import Modals from "./Components/Modals/Modals";
 import AddDoctor from "./Pages/AddDoctor";
 import AddAppointment from "./Pages/AddAppointment";
@@ -23,6 +22,7 @@ import UpdatePatient from "./Pages/UpdatePatient";
 import UpdateAppointment from "./Pages/UpdateAppointment";
 import AddDepartment from "./Pages/AddDepartment";
 import UpdateDepartment from "./Pages/UpdateDepartment";
+import Finance from "./Pages/Finance";
 
 export type Admin = {
   id: number;
@@ -332,7 +332,16 @@ function App() {
               />
             }
           />
-          <Route path="/payrolls" element={<Payroll />} />
+          <Route
+            path="/finance"
+            element={
+              <Finance
+                doctors={doctors}
+                nurses={nurses}
+                appointments={appointments}
+              />
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>

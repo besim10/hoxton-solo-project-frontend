@@ -124,8 +124,18 @@ img {
 }
 .dashboard-list{
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(350px, 1fr));
   gap: 1rem;
+}
+.info-main.dashboard-main{
+  display: grid;
+  position: relative;
+  place-content: center;
+}
+.info-main.dashboard-main h2{
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
 }
 .dashboard-list__item{
   display: grid;
@@ -334,4 +344,41 @@ img {
   position: absolute;
   right: 0;
   top: 0;
+}
+.finance-container{
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+.finance-table{
+  list-style: none;
+  padding: 1rem;
+}
+.finance-table__item{
+  border-bottom: 1px solid #000000;
+  padding: 0.4rem 0.2rem;
+}
+.finance-table .outcome-title{
+  border-bottom: 1px solid #7690a6;
+  margin-bottom: 1rem;
+  color: #ff3729;
+}
+.finance-table .income-title{
+  border-bottom: 1px solid #7690a6;
+  margin-bottom: 1rem;
+  color: #4cbb60;
+}
+.finance-table__item:nth-child(even){
+  background-color: #dee0de;
+}
+.finance-table__item span, .total-span {
+  font-weight: bold;
+  float: right;
+  padding-left: 3rem;
+}
+.income-total__item{
+  background-color: #dee0de;
+  padding: 0.4rem 0.2rem;
+  border-bottom: 1px solid #000000;
 }

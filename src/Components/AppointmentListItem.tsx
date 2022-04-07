@@ -164,7 +164,7 @@ function AppointmentListItem({
         {appointment.payment === null ? (
           <td>Null</td>
         ) : (
-          <td>{appointment.payment.toFixed(2)} €</td>
+          <td>{appointment.payment} €</td>
         )}
         <td>
           <IconButton
